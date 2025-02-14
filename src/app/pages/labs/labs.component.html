@@ -1,0 +1,127 @@
+<div class="container">
+    <p>labs funciona!</p>
+    <h2>{{welcome}}</h2>
+    <ul>
+      <li *ngFor="let task of tasks()">
+        {{task}}
+      </li>
+    </ul>
+    
+    <!-- clase 4 mostrando elementos dinamicos -->
+    <hr />
+    <h3>Elementos Dinámicos</h3>
+    <h2>{{ 'String'.repeat(4) }}</h2>
+    <p>La suma de 3 mas 3 es {{ 3 + 3}}</p>
+    <p>Hola, yo soy {{name()}} y tengo {{age}} años</p>
+    
+    <!-- clase 5 property binding -->
+    <hr />
+    <h3>Property Binging</h3>
+
+    <img [src]="img" alt="">
+    <input type="number" [value]="person().age">
+    <button [disabled]="disabled">Click me</button>
+    
+    <p>Person: {{person().name}}</p>
+    
+    <!-- clase 6 event binding -->
+    <hr />
+    <h3>Event Binding</h3>
+
+    <button (click)="clickHandler()">Click</button>
+    <button (dblclick)="clickHandler()">Double Click</button>
+
+    <p>(change)</p>
+    <input type="number" [value]="person().age" (change)="changeHandler($event)">
+
+
+     <!-- clase 7 event binding  KEYDOWN-->
+    <hr />
+    <h3>Event Binding Keydown</h3>
+
+    <p>(keydown)</p>
+    <input type="text" [value]="person().name" (keydown)="keydownHandler($event)">
+
+    <!-- clase 8 y 9 SIGNALS-->
+    <hr />
+    <h3>Signals</h3>
+
+    <input type="text" [value]="name()" (change)="changeHandler($event)">
+    <p>name: {{ name() }}</p>
+
+    <!-- clase 10 Directivas de control-->
+    <hr />
+    <h3>ngFor</h3>
+    <ul>
+      <p>Total: {{ tasks().length }}</p>
+      <li *ngFor="let task of tasks(); index as i">
+        {{ i+1 }}  {{ task }}
+      </li>
+    </ul>
+
+    <!-- clase 14 NgIF-->
+    <hr />
+    <h3>ngIF</h3>
+
+    <div *ngIf="1 === 1">
+      My Contend1 NgIF    If 1
+    </div>
+
+    <div *ngIf="name() === 'CESAR'">
+      My Contend2 NgIF    If 2
+    </div>
+
+    <input type="number" [value]="person().age" (change)="changeAge($event)">
+    <div *ngIf="person().name === 'Cesar' && person().age > 18; else BLOCK">
+      My Contend3 NgIF  IF(Soy Cesar y soy mayor de 18 años)
+    </div>
+    <ng-template #BLOCK>
+      ELSE Soy Cesar y soy menor de 18 años
+    </ng-template>
+
+    <!-- clase 15 NgSwitch-->
+    <hr />
+    <h3>ngSwitch</h3>
+
+    <input type="text" [value]="person().name" (change)="changeName($event)">
+    <div [ngSwitch]="person().name">
+      <p *ngSwitchCase="'Cesar'">Opc.1 Soy Cesar</p>
+      <p *ngSwitchCase="'Juan'">Opc.2 Soy Juan</p>
+      <p *ngSwitchDefault>Opc.Default No soy nadie</p>
+    </div>
+
+    <!-- clase 16 Controlando un Input-->
+    <hr />
+    <h3>Controlando un Input FormControl, ReactiveFormsModule</h3>
+
+    <input type="color" [formControl]="colorCtrl">
+    <p>color: {{ colorCtrl.value }}</p>
+
+    <!-- clase 18 Estilos al modo angular-->
+    <hr />
+    <h3>Estilos al modo Angular SVG</h3>
+    <svg>
+      <g>
+        <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value"></rect>
+      </g>
+    </svg>
+
+    <br>
+    <input type="number" [formControl]="widthCtrl">
+    <span class="box" [style.width.px]="widthCtrl.value"></span>
+
+
+    <!-- clase 19 Clases en angular-->
+    <hr />
+    <h3>Clases en Angular</h3>
+
+    <p>
+      <input type="text" [formControl]="nameCtrl">
+      <br>
+      <span class="message-error" [class.show]="nameCtrl.invalid && nameCtrl.touched">Nombre Incorrecto</span>
+    </p>
+    <p>
+      <input type="text" placeholder="InputText">
+    </p>
+
+</div>
